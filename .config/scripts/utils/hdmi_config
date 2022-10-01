@@ -1,0 +1,29 @@
+#!/bin/bash
+
+position_monitor=$1
+default_position="--right-of"
+
+echo "Checking if $(xrandr | awk '/HDMI.* connected/ {print  $1}') is connectect and assign position $position_monitor"
+
+function apply_config () {
+    xrandr --output  $(xrandr --listactivemonitors | awk ' /eDP.*/ {print $4}') --primary --pos 0x0 --output  $(xrandr | awk '/HDMI.* connected/ {print  $1}') --mode $(xrandr | awk '/HDMI.* connected/ {getline; print $1;}') -r $(xrandr | awk '/HDMI.* connected/ {getline; print $2;}') $default_position $(xrandr --listactivemonitors | awk '/eDP.*/ {print $4;}') --auto 
+    # xrandr --output $(xrandr --listactivemonitors | awk ' /eDP.*/ {print $4}') --primary    
+    echo 'awesome.restart()' | awesome-client 1>&2
+}
+
+if [[ $position_monitor == "left" ]]
+then
+    default_position="--left-of"
+    apply_config
+fi
+
+
+if [[ $position_monitor == "right" ]]
+then
+    default_position="--right-of"
+    apply_config
+else
+    echo "$position_monitor: INVALID POSITION." 1>&2
+    echo "USE LEFT OR RIGHT" 1>&2
+    exit 1
+fi
