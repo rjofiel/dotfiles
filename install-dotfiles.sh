@@ -9,6 +9,7 @@ if [ $? = 0 ]; then
   else
     echo "Backing up pre-existing dot files.";
     config checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    echo "$(config checkout 2>&1)"
 fi;
 config checkout
 config config status.showUntrackedFiles no
