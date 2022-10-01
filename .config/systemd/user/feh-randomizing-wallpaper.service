@@ -1,0 +1,7 @@
+[Unit]
+Description=Reload wallpaper
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c '/home/jofiel/.config/scripts/feh-randomized.sh'
+SyslogIdentifier=feh-randomizer

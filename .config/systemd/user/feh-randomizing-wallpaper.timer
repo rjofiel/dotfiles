@@ -1,0 +1,9 @@
+[Unit]
+Description=Realoading wallpaper and selecting a random image
+
+[Timer]
+OnStartupSec=2s
+OnUnitInactiveSec=15m
+
+[Install]
+WantedBy=timers.target
