@@ -1,0 +1,13 @@
+[includeIf "gitdir:~/Desktop/personal/"] 
+path = ~/Desktop/personal/.gitconfig.pers
+ 
+[includeIf "gitdir:~/Desktop/work/"]
+path = ~/Desktop/work/.gitconfig.work
+ 
+[core]
+excludesfile = ~/.gitignore 
+[init]
+	defaultBranch = main
+[user]
+	email = rjofiel97@outlook.es
+	name = Rodolfo Jofiel

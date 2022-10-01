@@ -1,0 +1,9 @@
+[user]
+email = rodolfo.cruzado@****.io
+name = Rodolfo Jofiel
+
+[bitbucket] 
+user = Rodolfo Jofiel
+
+[core]
+sshCommand = "ssh -i ~/.ssh/rc_****_rsa"

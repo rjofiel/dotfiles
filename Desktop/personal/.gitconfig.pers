@@ -1,0 +1,9 @@
+[user]
+email = rjofiel97@outlook.es
+name = Rodolfo Jofiel
+
+[github]
+user = Fazeludox
+
+[core]
+sshCommand = "ssh -i ~/.ssh/rj_github_ed"
