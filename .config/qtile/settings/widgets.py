@@ -227,8 +227,7 @@ primary_widgets = [
 ]
 
 secondary_widgets = [
-    *workspaces(),
-    separator()
+    *workspaces()
 ]
 
 widget_defaults = {
