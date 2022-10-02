@@ -1,9 +1,9 @@
 [user]
-email = rodolfo.cruzado@****.io
+email = rodolfo.cruzado@simplr.io
 name = Rodolfo Jofiel
 
 [bitbucket] 
 user = Rodolfo Jofiel
 
 [core]
-sshCommand = "ssh -i ~/.ssh/rc_****_rsa"
+sshCommand = "ssh -i ~/.ssh/rc_simplr_rsa"

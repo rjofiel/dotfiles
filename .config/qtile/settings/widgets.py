@@ -1,3 +1,4 @@
+import socket
 from libqtile import widget
 from .theme import colors
 
@@ -106,29 +107,34 @@ def systray():
 
 
 def battery():
-    return [
-        rounded_left('color3', 'alpha'),
-        icon(fg='text', bg='color3', text='', fontsize=28),
-        widget.Memory(
-            **base(fg='text', bg='color3'),
-            format='{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
-            fontsize=16,
-            measure_mem='G'
-        ),
-        icon(fg='text', bg='color3', text=' | ', fontsize=17),
-        widget.Battery(
-            **base(fg='text', bg='color3'),
-            battery=1,
-            fontsize=17,
-            low_percentage=0.2,
-            low_foreground=colors['active'],
-            update_interval=1,
-            format='{char} {percent:2.0%}',
-            charge_char='ﮣ',
-            discharge_char='',
-        ),
-        rounded_right('color3', 'alpha')
-    ]
+
+    if not socket.gethostname() in "x570aoruspro":
+        return [
+            rounded_left('color3', 'alpha'),
+            icon(fg='text', bg='color3', text='', fontsize=28),
+            widget.Memory(
+                **base(fg='text', bg='color3'),
+                format='{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
+                fontsize=16,
+                measure_mem='G'
+            ),
+            icon(fg='text', bg='color3', text=' | ', fontsize=17),
+            widget.Battery(
+                **base(fg='text', bg='color3'),
+                battery=1,
+                fontsize=17,
+                low_percentage=0.2,
+                low_foreground=colors['active'],
+                update_interval=1,
+                format='{char} {percent:2.0%}',
+                charge_char='ﮣ',
+                discharge_char='',
+            ),
+            rounded_right('color3', 'alpha'),
+            separator(bg='alpha')
+        ]
+    else:
+       return []
 
 
 def date():
@@ -196,8 +202,6 @@ primary_widgets = [
     separator(bg='alpha'),
 
     *battery(),
-
-    separator(bg='alpha'),
 
     *layout_type(),
 
