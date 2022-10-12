@@ -176,12 +176,13 @@ def icons_menu():
         separator(bg='alpha'),
         rounded_left('color3', 'alpha'),
         icon(fg="text", bg="color3",  text="", fontsize=28),
-        widget.PulseVolume(
+        widget.Volume(
             fontsize=16,
             padding=10,
             foreground=colors['text'],
             background=colors['color3'],
-        ),
+            volume_app='pavucontrol'
+            ),
         rounded_right('color3', 'alpha')
     ]
 
