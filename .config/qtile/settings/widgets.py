@@ -16,11 +16,12 @@ def separator(fg='text', bg='dark'):
     return widget.Sep(**base(fg, bg), linewidth=0, padding=5)
 
 
-def icon(fg='text', bg='alpha', fontsize=16, text="?"):
+def icon(fg='text', bg='alpha', fontsize=16, text="?", font = 'Iosevka'):
     return widget.TextBox(
         **base(fg, bg),
         fontsize=fontsize,
         text=text,
+        font=font,
         padding=0
     )
 
@@ -45,13 +46,12 @@ def rounded_right(fg="light", bg="alpha"):
 
 def sysmenu():
     return [
-        rounded_left('color3', 'alpha'),
         widget.LaunchBar(
             **base('active', 'color3'),
             padding=5,
             font='UbuntuMono Nerd Font',
             fontsize=24,
-            progs=[("拉 ", "archlinux-logout", "System menu")],
+            progs=[("󰊠 ", "archlinux-logout", "System menu")],
             text_only=True
         )
     ]
@@ -61,13 +61,13 @@ def workspaces():
     return [
         widget.GroupBox(
             **base(fg='light', bg='alpha'),
-            font='droid sans mono for powerline',
-            fontsize=13,
+            font='UbuntuMono Nerd Font Propo',
+            fontsize=14,
             margin_y=2,
-            margin_x=4,
+            margin_x=5,
             padding_y=10,
-            padding_x=2,
-            borderwidth=6,
+            padding_x=5,
+            borderwidth=2,
             visible_groups=["1", "2", "3", "4", "5", "6"],
             active=colors['active'],
             inactive=colors['inactive'],
@@ -87,22 +87,18 @@ def workspaces():
 
 def layout_type():
     return [
-        rounded_left('color3', 'alpha'),
         widget.CurrentLayoutIcon(**base(fg="color2", bg='color3'), scale=0.65),
         widget.CurrentLayout(**base(fg='text', bg='color3'), padding=5),
         icon(fg="text", bg="color3", text='|', fontsize=17),
         separator(fg="color2", bg="color3"),
         widget.WindowName(**base(bg='color3', fg='active'), fontsize=14, format="{name}",
                           empty_group_string='Desktop', max_chars=34, markup=True, width=250, parse_text=parseLongName),
-        rounded_right('color3', 'alpha')
     ]
 
 
 def systray():
     return [
-        rounded_left('color3', 'alpha'),
-        widget.Systray(background=colors['color3'], icon_size=20, padding=4),
-        rounded_right('color3', 'alpha')
+        widget.Systray(background=colors['alpha'], icon_size=20, padding=4),
     ]
 
 
@@ -110,7 +106,6 @@ def battery():
 
     if not socket.gethostname() in "x570aoruspro":
         return [
-            rounded_left('color3', 'alpha'),
             icon(fg='text', bg='color3', text='', fontsize=28),
             widget.Memory(
                 **base(fg='text', bg='color3'),
@@ -139,27 +134,22 @@ def battery():
 
 def date():
     return [
-        rounded_left('color3', 'alpha'),
-        icon(bg="color3", fontsize=26, text=''),
-        widget.Clock(**base(bg='color3'), format=' %d %b | %A'),
-        rounded_right('color3', 'alpha')
+        icon(bg="color3", fontsize=20, text=" 󰃰 ", font='JetBrainsMonoNL Nerd Font '),
+        widget.Clock(**base(bg='color3'), format='%d %b | %A ')
     ]
 
 
 def clock():
     return [
-        rounded_left('color3', 'alpha'),
-        icon(fg="text", bg="color3", fontsize=24, text=' '),
+        icon(fg="text", bg="color3", fontsize=2, text='󰃰 ', font='JetBrainsMonoNL Nerd Font'),
         widget.Clock(**base(fg='text', bg='color3'),
                      fontsize=16,
                      format='%I:%M %p'),
-        rounded_right('color3', 'alpha')
     ]
 
 
 def icons_menu():
     return [
-        rounded_left('color3', 'alpha'),
         icon(fg="text", bg="color3", text='罹', fontsize=26),
         widget.CheckUpdates(
             foreground=colors['text'],
@@ -172,9 +162,6 @@ def icons_menu():
             custom_command='checkupdates',
             fontsize=16
         ),
-        rounded_right('color3', 'alpha'),
-        separator(bg='alpha'),
-        rounded_left('color3', 'alpha'),
         icon(fg="text", bg="color3",  text="", fontsize=28),
         widget.Volume(
             fontsize=16,
@@ -183,7 +170,6 @@ def icons_menu():
             background=colors['color3'],
             volume_app='pavucontrol'
             ),
-        rounded_right('color3', 'alpha')
     ]
 
 
@@ -213,16 +199,12 @@ primary_widgets = [
     widget.Spacer(background=colors['alpha']),
 
     *systray(),
-
+    
     separator(bg='alpha'),
 
     *icons_menu(),
 
-    separator(bg='alpha'),
-
     *clock(),
-
-    separator(bg='alpha'),
 
     *sysmenu()
 ]
@@ -232,8 +214,9 @@ secondary_widgets = [
 ]
 
 widget_defaults = {
-    # 'font': 'UbuntuMono Nerd Font Bold',
-    # 'font': 'novamono for Powerline',
+    #'font': 'UbuntuMono Nerd Font Bold',
+    #'font': 'VictorMono Nerd Font',
+    #'font': 'novamono for Powerline',
     'font': 'Iosevka',
     'fontsize': 14,
     'padding': 1,

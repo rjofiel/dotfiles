@@ -72,7 +72,7 @@ statusbar_format = "%artists - %title"
 "2" = "focus library"
 "Ctrl+q" = "focus queue"
 # Go to the playing track
-"." = "move playing"
+#"." = "move playing"
 # Navigation
 "Down" = "move down 1"
 "G" = "move bottom"
@@ -110,7 +110,7 @@ statusbar_format = "%artists - %title"
 "Z" = "quit"
 "?" = "help"
 "U" = "update"
-"q" = "noop"
+#"q" = "noop"
 
 [track_format]
 left = "%artists - %title"
