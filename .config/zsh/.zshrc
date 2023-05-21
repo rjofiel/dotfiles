@@ -1,7 +1,7 @@
 stty stop undef
 
 # Fix the Java Problem
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/var/lib/snapd/snap/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
@@ -170,6 +170,11 @@ clear-swap() {
 	swapoff -a
 	sleep 15
 	swapon -a 
+}
+
+kill-process(){
+	echo "Killing" $1
+	kill -9 $(pidof $1)
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
