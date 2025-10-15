@@ -2,7 +2,7 @@
 # Qtile workspaces
 
 from libqtile.config import Key, Group
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from .keys import mod, keys
 
 

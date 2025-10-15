@@ -1,7 +1,6 @@
 stty stop undef
 
 # Fix the Java Problem
-export PATH=$HOME/.local/bin:/var/lib/snapd/snap/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
@@ -21,8 +20,9 @@ source ~/.git-prompt.sh
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-sudo/sudo.plugin.zsh
+source $ZSH_CUSTOM/plugins/zsh-autosuggestions
+source $HOME/.oh-my-zsh/plugins/sudo/sudo.plugin.zsh
+source $HOME/.oh-my-zsh/plugins/*/*.plugin.zsh
 source $HOME/.oh-my-zsh/plugins/git/git.plugin.zsh
 source $HOME/.oh-my-zsh/plugins/ssh-agent/ssh-agent.plugin.zsh
 
@@ -30,6 +30,8 @@ source $HOME/.oh-my-zsh/plugins/ssh-agent/ssh-agent.plugin.zsh
 plugins=(
 	git 
 	ssh-agent
+  	kube-ps1
+  	sudo
 	)
 
 # Set up the prompt
@@ -37,6 +39,7 @@ plugins=(
 autoload -Uz promptinit
 promptinit
 prompt adam1
+PROMPT='$(kube_ps1)'$PROMPT
 
 setopt histignorealldups sharehistory
 
@@ -79,8 +82,6 @@ source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # Manual configuration
-
-export PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
 # Manual aliases
 alias ll='lsd -lh --group-dirs=first'
@@ -179,3 +180,7 @@ kill-process(){
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
