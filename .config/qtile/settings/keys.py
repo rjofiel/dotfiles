@@ -71,8 +71,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod, "shift"], "r", lazy.spawn("redshift -x")),
 
     # Screenshot
-    ([mod], "s", lazy.spawn("scrot")),
-    ([mod, "shift"], "s", lazy.spawn("maim -s | xclip -selection clipboard -t image/png")),
+    ([mod], "s", lazy.spawn("maim -s | xclip -selection clipboard -t image/png")),
 
     #Betterlockscreen
     ([mod, "shift"], "e", lazy.spawn("betterlockscreen -l dim -- --time-str='%H:%M'")),

@@ -1,9 +1,9 @@
 [user]
-email = rodolfo.cruzado@simplr.io
-name = Rodolfo Jofiel
+email = 62037537+rjofiel@users.noreply.github.com
+name = Jofiel
 
-[bitbucket] 
-user = rodolfo.cruzado@simplr.io
+[github] 
+user = rjofiel
 
 [core]
-sshCommand = "ssh -i ~/.ssh/rc_simplr_rsa"
+sshCommand = "ssh -i ~/.ssh/rj_github_ed"

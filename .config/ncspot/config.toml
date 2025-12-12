@@ -123,8 +123,8 @@ body = "%artists"
 
 # Gruvbox dark by Dajonaga [ background = "default" to enjoy terminal transparency ]
 [theme]
-#background = "#282828"
-background = "default"
+background = "#282828"
+#background = "default"
 primary = "#EBDBB2"
 secondary = "#D5C4A1"
 title = "#D65D0E"

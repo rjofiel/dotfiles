@@ -11,3 +11,5 @@ excludesfile = ~/.gitignore
 [user]
 	email = 62037537+rjofiel@users.noreply.github.com
 	name = Jofiel
+[fetch]
+	prune = true
