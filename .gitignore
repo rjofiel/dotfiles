@@ -3,8 +3,77 @@
 .ssh
 __pycache__
 __pycache__/*
-!.gitignore
-!.gitmodules
+# Cache directories
+.chrome/
+.chromium/
+.cache/
+node_modules/
+.npm/
+.yarn/
+.gem/
+.Composer/
+.go/
+.nvm/
+.vue-cli/
+.gradle/
+.target/
+dist/
+build/
+*.pyc
+*.pyo
+__pycache__/
+*.class
+*.o
+*.so
+*.exe
+.DS_Store
+Thumbs.db
+
+# Application-specific ignores
+.config/Antigravity/
+.config/Code/
+.config/Code - OSS/
+.config/Discord/
+.config/Electron/
+.config/JetBrains/
+.config/Slack/
+.config/TinyRDM/
+.config/Octarine.app/
+.config/Via-nativia/
+.config/elecwhat/
+.config/DrSprinto/
+.config/gga/
+.config/nody-greeter/
+.config/sourcery/
+.config/nextjs-nodejs/
+.config/create-next-app-nodejs/
+.config/astro/
+.config/nx/
+.config/yarn/
+.config/opencode/
+.config/wal/
+.config/packages
+.config/packages_to_install.sh
+.config/pacman_list_package
+.config/.ssh/
+# nordvpn - solo logs
+.config/nordvpn/
+# spotatui - credenciales spotify
+.config/spotatui/
+# mopidy - credenciales
+.config/mopidy/
+# pypoetry - vacío
+.config/pypoetry/
+# pulse - runtime
+.config/pulse/
+# nitrogen - redundante (usamos feh)
+.config/nitrogen/
+# autostart - apps específicas
+.config/autostart/
+# files con datos sensibles en nombre
+.config/pavucontrol.ini.*
+.config/ngrok/
+
 # Except for the files and folders we want to track
 !README.md
 !README.es.md
