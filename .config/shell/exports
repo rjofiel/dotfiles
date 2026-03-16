@@ -1,0 +1,16 @@
+# =============================================================================
+# Exports - Variables de entorno compartidas
+# =============================================================================
+
+# Editor
+export EDITOR="antigravity"
+export VISUAL="antigravity --wait"
+
+# Todo
+export TODO_PATH="$HOME/Documents/todo"
+
+# SSH sudo prompt
+export SUDO_PROMPT="passwd: "
+
+# NVM (se carga en el archivo de cada shell si está disponible)
+# export NVM_DIR="$HOME/.nvm"

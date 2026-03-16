@@ -1,0 +1,10 @@
+[Default Applications]
+text/markdown=code.desktop
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+
+[Added Associations]
+text/markdown=code.desktop;vim.desktop;
+image/png=feh.desktop;
+image/jpeg=feh.desktop;sxiv.desktop;

@@ -112,3 +112,10 @@ source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# -----------------------------------------------------------------------------
+# Auto-start Tmux
+# -----------------------------------------------------------------------------
+if [ -z "$TMUX" ]; then
+    tmux attach || tmux new
+fi

@@ -1,0 +1,26 @@
+# =============================================================================
+# Aliases - Compartidos entre Zsh y Bash
+# =============================================================================
+
+# Listado con lsd (si está disponible, si no usa ls estándar)
+if command -v lsd &> /dev/null; then
+    alias ll='lsd -lh --group-dirs=first'
+    alias la='lsd -a --group-dirs=first'
+    alias l='lsd --group-dirs=first'
+    alias lla='lsd -lha --group-dirs=first'
+    alias ls='lsd --group-dirs=first'
+else
+    alias ll='ls -lh --group-directories-first'
+    alias la='ls -a --group-directories-first'
+    alias l='ls --group-directories-first'
+    alias lla='ls -lha --group-directories-first'
+    alias ls='ls --group-directories-first'
+fi
+
+# Utilidades
+alias cat='bat'
+alias grep='grep --color=auto'
+
+# Scripts custom
+alias vswork='sh $HOME/.config/scripts/work-proyects.sh'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

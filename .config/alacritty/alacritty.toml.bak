@@ -1,0 +1,115 @@
+general.live_config_reload = true
+[terminal.shell]
+args = ["--login"]
+program = "/usr/bin/zsh"
+
+[selection]
+save_to_clipboard = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0xA8A8A8"
+blue = "0xD08A8C"
+cyan = "0xF1F1F1"
+green = "0x565656"
+magenta = "0x9D9D9D"
+red = "0x481112"
+white = "0xF0F0F0"
+yellow = "0xB32427"
+
+[colors.cursor]
+cursor = "0xA8A8A8"
+text = "0x141414"
+
+[colors.normal]
+black = "0x3B3B3B"
+blue = "0xD08A8C"
+cyan = "0xF1F1F1"
+green = "0x565656"
+magenta = "0x9D9D9D"
+red = "0x481112"
+white = "0xF0F0F0"
+yellow = "0xB32427"
+
+[colors.primary]
+background = "0x141414"
+foreground = "0xFAFAFA"
+
+[cursor]
+style = "Underline"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+normal = { family = "agave Nerd Font"}
+bold = { family = "agave Nerd Font"}
+italic = { family = "agave Nerd Font"}
+bold_italic = { family = "agave Nerd Font"}
+size = 10.0
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+dynamic_title = true
+decorations = "full"
+decorations_theme_variant = "Dark"
+padding = { x = 6, y = 6 }
+dynamic_padding = true
+# opacity eliminado - picom maneja la transparencia
+title = "Alacritty@jofiel"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.dimensions]
+columns = 100
+lines = 30
