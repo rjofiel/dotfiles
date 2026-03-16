@@ -1,56 +1,56 @@
 # Dotfiles – Arch Linux + Qtile
 
-## Sistemas
+## System
 - **OS**: Arch Linux (x86_64)
 - **Kernel**: Linux 6.12.61-1-lts
 - **CPU**: Intel® Core™ i7-10870H (16) @ 5.00 GHz
 - **GPU**: NVIDIA RTX 3060 Mobile + Intel UHD Graphics
 - **RAM**: 32 GB
-- **Pantalla**: 15" · 1920x1080 · 240Hz
+- **Display**: 15" · 1920x1080 · 240Hz
 - **Locale**: en_US.UTF-8
 
 ## Stack
 - **WM**: Qtile (X11)
 - **Shell**: Zsh
 - **Terminal**: Alacritty
-- **Fuente**: Agave Nerd Font
+- **Font**: Agave Nerd Font
 - **Cursor**: Breeze_Default
 
-## Paquetes
-- **Qtile**: Window manager escrito en Python.
-- **Zsh**: Shell configurada con alias, autocompletado y persistencia de historial.
+## Packages
+- **Qtile**: Window manager written in Python.
+- **Zsh**: Shell configured with aliases, autocompletion and history persistence.
 - **Alacritty**: Terminal.
-- **fastfetch**: Herramienta para mostrar información del sistema de manera rápida.
-- **wallust**: Generador de colores desde wallpaper.
-- **pywal/wal**: Alternativa para generación de colores.
-- **feh**: Visor de imágenes y gestor de wallpapers.
-- **rofi**: Launcher de aplicaciones.
-- **dunst**: Demonio de notificaciones.
-- **picom**: Compositor de ventanas.
-- **cbatticon**: Indicador de batería en systray.
-- **blueberry-tray**: Gestor de Bluetooth en systray.
-- **betterlockscreen**: Pantalla de bloqueo.
+- **fastfetch**: Tool to display system information quickly.
+- **wallust**: Color generator from wallpaper.
+- **pywal/wal**: Alternative for color generation.
+- **feh**: Image viewer and wallpaper manager.
+- **rofi**: Application launcher.
+- **dunst**: Notification daemon.
+- **picom**: Window compositor.
+- **cbatticon**: Battery icon in systray.
+- **blueberry-tray**: Bluetooth manager in systray.
+- **betterlockscreen**: Lock screen.
 
 ---
 
-## Instalación de Paquetes
+## Package Installation
 
-### Script automático
+### Automatic Script
 
 ```bash
-# Simular instalación (ver qué se instalaría)
+# Simulate installation (see what would be installed)
 .config/scripts/install-packages.sh --dry
 
-# Instalar solo Pacman
+# Install only Pacman packages
 .config/scripts/install-packages.sh
 
-# Instalar Pacman + AUR (paru)
+# Install Pacman + AUR (paru)
 .config/scripts/install-packages.sh --aur
 ```
 
-### Paquetes incluidos
+### Included Packages
 
-| Categoría | Paquetes |
+| Category | Packages |
 |-----------|----------|
 | **Shell/Utils** | zsh, zsh-completions, bat, fastfetch, fzf, jq |
 | **WM/UI** | qtile, alacritty, rofi, picom, dunst, feh, autorandr |
@@ -59,48 +59,48 @@
 | **Dev** | git, curl, wget, neovim, python |
 | **Extras** | redshift, playerctl, maim, scrot, xdotool |
 
-### Paquetes AUR (opcional)
+### AUR Packages (optional)
 
 ```bash
 .config/scripts/install-packages.sh --aur
 ```
 
-Incluye: antigravity-bin, anydesk-bin, brave-bin, dropbox, vscode, etc.
+Includes: antigravity-bin, anydesk-bin, brave-bin, dropbox, vscode, etc.
 
 ---
 
-## Instalación de Dotfiles
+## Dotfiles Installation
 
 ```bash
-# Clonar e instalar
+# Clone and install
 git clone --bare git@github.com:rjofiel/dotfiles.git $HOME/.dotfiles
 cd $HOME
 git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 
-# O usar el script (con backup automático)
+# Or use the script (with automatic backup)
 ./install-dotfiles.sh
-./install-dotfiles.sh --force  # Si ya hay backup
+./install-dotfiles.sh --force  # If backup already exists
 ```
 
 ---
 
-## Estructura del repositorio
+## Repository Structure
 
 ```
 .config/
 ├── alacritty/           # Terminal config
 ├── qtile/               # Window manager
-│   ├── autostart.sh    # Scripts de inicio
-│   ├── config.py       # Config principal
-│   ├── settings/       # Configuración modular
-│   └── themes/         # Temas de colores
+│   ├── autostart.sh    # Startup scripts
+│   ├── config.py       # Main config
+│   ├── settings/       # Modular configuration
+│   └── themes/         # Color themes
 ├── rofi/               # Launcher
-├── dunst/              # Notificaciones
+├── dunst/              # Notifications
 ├── picom/              # Compositor
 ├── zsh/                # Shell
 ├── fastfetch/          # System info
-├── scripts/            # Scripts personales
-├── systemd/user/       # Servicios de usuario
-├── .colors/           # Sistema de theming
-└── .ssh/              # Configuración SSH
+├── scripts/            # Personal scripts
+├── systemd/user/       # User services
+├── .colors/           # Theming system
+└── .ssh/              # SSH configuration
 ```

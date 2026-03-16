@@ -1,123 +1,123 @@
 # Qtile Configuration
 
-Mi configuración personal de Qtile (tiling window manager para Linux).
+My personal Qtile configuration (tiling window manager for Linux).
 
-## Estructura
+## Structure
 
 ```
 .qtile/
-├── config.py           # Entry point - imports de settings
-├── config.json         # Tema activo (kronii/dracula)
-├── autostart.sh        # Scripts que corren al inicio
+├── config.py           # Entry point - settings imports
+├── config.json         # Active theme (kronii/dracula)
+├── autostart.sh        # Scripts that run at startup
 ├── settings/
 │   ├── keys.py         # Keybindings
 │   ├── groups.py       # Workspaces (1-6)
-│   ├── layouts.py      # Tipos de layout
-│   ├── widgets.py     # Widgets de la barra
-│   ├── screens.py      # Config de monitores
-│   ├── mouse.py        # Mouse bindings
-│   ├── path.py         # Paths absolutos
-│   └── theme.py        # Loader de temas
+│   ├── layouts.py      # Layout types
+│   ├── widgets.py      # Bar widgets
+│   ├── screens.py      # Monitor configuration
+│   ├── mouse.py       # Mouse bindings
+│   ├── path.py        # Absolute paths
+│   └── theme.py       # Theme loader
 └── themes/
-    ├── kronii.json     # Tema Kronii (default)
-    └── dracula.json   # Tema Dracula
+    ├── kronii.json     # Kronii theme (default)
+    └── dracula.json   # Dracula theme
 ```
 
-## Requisitos
+## Requirements
 
-- **Qtile** instalado
+- **Qtile** installed
 - **Python 3.13+**
-- **Rofi** (menú)
+- **Rofi** (menu)
 - **Alacritty** (terminal)
-- **Firefox** (navegador)
+- **Firefox** (browser)
 - **Nerd Fonts** (Iosevka, UbuntuMono)
 
-## Atajos de Teclado
+## Keyboard Shortcuts
 
-| Atajo | Acción |
-|-------|--------|
-| `Super + j/k/h/l` | Mover entre ventanas (down/up/left/right) |
+| Shortcut | Action |
+|----------|--------|
+| `Super + j/k/h/l` | Move between windows (down/up/left/right) |
 | `Super + f` | Toggle fullscreen |
 | `Super + Shift + f` | Toggle floating |
-| `Super + Tab` | Siguiente layout |
-| `Super + Shift + Tab` | Layout anterior |
-| `Super + q` | Cerrar ventana |
-| `Super + m` | Abrir Rofi (menú) |
-| `Super + Return` | Abrir terminal (Alacritty) |
-| `Super + b` | Abrir Firefox |
-| `Super + s` | Screenshot (con maim) |
+| `Super + Tab` | Next layout |
+| `Super + Shift + Tab` | Previous layout |
+| `Super + q` | Close window |
+| `Super + m` | Open Rofi (menu) |
+| `Super + Return` | Open terminal (Alacritty) |
+| `Super + b` | Open Firefox |
+| `Super + s` | Screenshot (with maim) |
 | `Super + Shift + e` | Lock screen (betterlockscreen) |
-| `Super + r` | Redshift modo noche |
-| `Super + Shift + r` | Apagar Redshift |
-| `Super + [1-6]` | Ir a workspace N |
-| `Super + Shift + [1-6]` | Mover ventana a workspace N |
+| `Super + r` | Redshift night mode |
+| `Super + Shift + r` | Turn off Redshift |
+| `Super + [1-6]` | Go to workspace N |
+| `Super + Shift + [1-6]` | Move window to workspace N |
 | `Ctrl + Super + r` | Restart Qtile |
-| `Ctrl + Super + q` | Salir de Qtile |
+| `Ctrl + Super + q` | Exit Qtile |
 
 ### Hardware
-| Atajo | Acción |
-|-------|--------|
-| `Vol Up/Down` | Subir/bajar volumen |
-| `Mute` | Silenciar |
-| `Brightness Up/Down` | Brillo de pantalla |
+| Shortcut | Action |
+|----------|--------|
+| `Vol Up/Down` | Volume up/down |
+| `Mute` | Mute |
+| `Brightness Up/Down` | Screen brightness |
 
 ## Workspaces
 
-6 workspaces disponibles, navegables con `Super + [1-6]`.
+6 workspaces available, navigable with `Super + [1-6]`.
 
 ## Layouts
 
-1. **Spiral** - Espiral (default)
+1. **Spiral** - Spiral (default)
 2. **Bsp** - Binary Space Partitioning
-3. **MonadTall** - Una ventana grande a la izq, stacked a la derecha
-4. **RatioTile** - Tile con ratios
-5. **Tile** - Tile clásico
-6. **Max** - Fullscreen (sin tiling)
+3. **MonadTall** - One large window on the left, stacked on the right
+4. **RatioTile** - Tile with ratios
+5. **Tile** - Classic tile
+6. **Max** - Fullscreen (without tiling)
 
-## Temas
+## Themes
 
-Editar `config.json` para cambiar tema:
+Edit `config.json` to change theme:
 ```json
 {"theme": "trainatlas"}
 ```
-- **TrainAtlas**: Basado en la paleta de TrainAtlas (Forest Green, Aged Gold, Violet)
+- **TrainAtlas**: Based on TrainAtlas palette (Forest Green, Aged Gold, Violet)
 ```json
 {"theme": "kronii"}
 ```
-- **Kronii**: Tema otro
+- **Kronii**: Another theme
 ```json
 {"theme": "dracula"}
 ```
-- **Dracula**: Tema clásico violeta
+- **Dracula**: Classic purple theme
 
-## Memoria y Performance
+## Memory and Performance
 
-Esta config está optimizada para bajo consumo:
+This config is optimized for low consumption:
 
-- **CheckUpdates**: Actualiza cada 1 hora (3600s)
-- **Clock**: Actualiza cada 60 segundos
-- **Net**: Actualiza cada 10 segundos
+- **CheckUpdates**: Updates every 1 hour (3600s)
+- **Clock**: Updates every 60 seconds
+- **Net**: Updates every 10 seconds
 
-Esto reduce CPU vs defaults que actualizan cada segundo.
+This reduces CPU vs defaults that update every second.
 
 ## Troubleshooting
 
-### No inicia Qtile
+### Qtile doesn't start
 ```bash
-# Verificar syntax
+# Verify syntax
 python3 -m py_compile ~/.config/qtile/config.py
 
-# Ver imports
+# Verify imports
 cd ~/.config/qtile && python3 -c "from settings.keys import *"
 ```
 
-### Problemas con widgets
-- Revisar que Network interface en `widgets.py` (`wlp2s0`) sea la correcta
-- Verificar que `checkupdates` esté instalado (paquete `pacman-contrib`)
+### Widget problems
+- Check that Network interface in `widgets.py` (`wlp2s0`) is correct
+- Verify that `checkupdates` is installed (package `pacman-contrib`)
 
 ### Multi-monitor
-El script detecta monitores automáticamente via xrandr.
+The script automatically detects monitors via xrandr.
 
-## Inspiración
+## Inspiration
 
-Basado en la configuración de [Antonio Sarosi](https://github.com/antoniosarosi/dotfiles).
+Based on the configuration of [Antonio Sarosi](https://github.com/antoniosarosi/dotfiles).
