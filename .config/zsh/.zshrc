@@ -117,5 +117,5 @@ export NVM_DIR="$HOME/.nvm"
 # Auto-start Tmux
 # -----------------------------------------------------------------------------
 if [ -z "$TMUX" ]; then
-    tmux attach || tmux new
+    tmux attach || tmux new -s "$(hostname)"
 fi
