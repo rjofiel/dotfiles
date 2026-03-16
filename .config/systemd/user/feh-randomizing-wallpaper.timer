@@ -3,7 +3,7 @@ Description=Realoading wallpaper and selecting a random image
 
 [Timer]
 OnStartupSec=2s
-OnUnitInactiveSec=15m
+OnUnitInactiveSec=10m
 
 [Install]
 WantedBy=timers.target

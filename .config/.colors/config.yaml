@@ -1,0 +1,27 @@
+# Theming System Configuration
+
+# Directorio de wallpapers
+wallpaper_dir: "~/Pictures/Wallpapers"
+
+# Directorio de colores (fuente de verdad)
+colors_file: "~/.config/.colors/colors.json"
+
+# Aplicaciones a themeear
+apps:
+  - alacritty
+  - rofi
+  - qtile
+  - dunst
+
+# Rutas de configs de cada app
+paths:
+  alacritty: "~/.config/alacritty/alacritty.toml"
+  rofi: "~/.config/rofi/config.rasi"
+  qtile: "~/.config/qtile/themes/wallust.json"
+  dunst: "~/.config/dunst/dunstrc"
+
+# Opciones de backup
+backup:
+  enabled: true
+  extension: ".bak"
+  keep_previous: true
