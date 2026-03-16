@@ -54,7 +54,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "m", lazy.spawn("rofi -show drun")),
 
     # Workspaces
-    ([mod], "c", lazy.spawn("sh '/home/jofiel/.config/scripts/work-proyects.sh'")),
+    ([mod], "c", lazy.spawn("sh '/home/jofiel/.config/scripts/work-projects.sh'")),
     
 
     # Window Nav
@@ -75,6 +75,11 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     #Betterlockscreen
     ([mod, "shift"], "e", lazy.spawn("betterlockscreen -l dim -- --time-str='%H:%M'")),
+
+    # Wallpaper
+    ([mod], "w", lazy.spawn("sh '/home/jofiel/.config/scripts/wallpaper-cycle.sh' next --theme")),
+    ([mod, "shift"], "w", lazy.spawn("sh '/home/jofiel/.config/scripts/wallpaper-cycle.sh' prev --theme")),
+    ([mod, "mod1"], "w", lazy.spawn("sh '/home/jofiel/.config/scripts/wallpaper-cycle.sh' random --theme")),
 
     # ------------ Hardware Configs ------------
 

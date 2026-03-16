@@ -6,4 +6,4 @@ name = Rodolfo Jofiel
 user = Fazeludox
 
 [core]
-sshCommand = "ssh -i ~/.ssh/rj_github_ed"
+sshCommand = "ssh -i ~/.ssh/jofiel.github"

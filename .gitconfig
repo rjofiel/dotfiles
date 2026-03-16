@@ -6,6 +6,7 @@ path = ~/Desktop/work/.gitconfig.work
  
 [core]
 excludesfile = ~/.gitignore 
+	editor = code
 [init]
 	defaultBranch = main
 [user]
@@ -13,3 +14,5 @@ excludesfile = ~/.gitignore
 	name = Jofiel
 [fetch]
 	prune = true
+[gui]
+	recentrepo = /home/jofiel/Desktop/personal/evalion-tech

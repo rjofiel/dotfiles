@@ -6,4 +6,4 @@ name = Jofiel
 user = rjofiel
 
 [core]
-sshCommand = "ssh -i ~/.ssh/rj_github_ed"
+sshCommand = "ssh -i ~/.ssh/jofiel.github.pub"

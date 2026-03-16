@@ -1,0 +1,25 @@
+/* Rofi Color Theme - Generated from /home/jofiel/Pictures/Wallpapers/samurai.png */
+
+* {
+    bg: #010101;
+    bg-alt: #8a8a8b;
+    fg: #c6c6c7;
+    fg-alt: #c6c6c7;
+
+    color0: #010101;
+    color1: #5F5F60;
+    color2: #5F6060;
+    color3: #707071;
+    color4: #7E7F80;
+    color5: #7F8081;
+    color6: #8B8B8C;
+    color7: #c6c6c7;
+    color8: #8a8a8b;
+    color9: #5F5F60;
+    color10: #5F6060;
+    color11: #707071;
+    color12: #7E7F80;
+    color13: #7F8081;
+    color14: #8B8B8C;
+    color15: #c6c6c7;
+}
