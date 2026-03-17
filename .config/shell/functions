@@ -83,3 +83,32 @@ kill-process(){
     echo "Killing $1"
     kill -9 "$(pidof "$1")"
 }
+
+# =============================================================================
+# Tmux Auto-start (numbered sessions)
+# =============================================================================
+tmux-start() {
+    # Cleanup old idle sessions (>30 min)
+    tmux-session-cleanup
+    
+    # Get next session number
+    SESSION_NUM=1
+    while tmux has-session -t "$SESSION_NUM" 2>/dev/null; do
+        SESSION_NUM=$((SESSION_NUM + 1))
+    done
+    
+    # Create and attach new numbered session
+    tmux new-session -d -s "$SESSION_NUM"
+    tmux attach-session -t "$SESSION_NUM"
+}
+
+tmux-session-cleanup() {
+    for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
+        idle=$(tmux display-message -p -t "$session" -F '#{session_last}' 2>/dev/null)
+        windows=$(tmux list-windows -t "$session" 2>/dev/null | wc -l)
+        # If idle > 30 min (1800s) and no windows
+        if [ "$idle" -gt 1800 ] && [ "$windows" -eq 0 ]; then
+            tmux kill-session -t "$session" 2>/dev/null
+        fi
+    done
+}
