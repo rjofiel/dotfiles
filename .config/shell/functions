@@ -126,6 +126,7 @@ tmux-start() {
     # Next session number
     SESSION_NUM=$((max_num + 1))
     
-    # Create new numbered session (don't attach)
+    # Create and attach new numbered session
     tmux new-session -d -s "$SESSION_NUM"
+    tmux attach-session -t "$SESSION_NUM"
 }
