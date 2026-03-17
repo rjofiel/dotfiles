@@ -22,6 +22,9 @@ source $HOME/.config/shell/exports
 source $HOME/.config/shell/aliases
 source $HOME/.config/shell/functions
 
+# SSH Agent auto-start (después de cargar funciones)
+ssh-agent-start
+
 # -----------------------------------------------------------------------------
 # Oh-My-Zsh + Plugins
 # -----------------------------------------------------------------------------
@@ -114,8 +117,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # -----------------------------------------------------------------------------
-# Auto-start Tmux
+# Auto-start Tmux (numbered sessions, always create new)
 # -----------------------------------------------------------------------------
 if [ -z "$TMUX" ]; then
-    tmux attach || tmux new -s "$(hostname)"
+    command -v tmux &>/dev/null && tmux-start
 fi
