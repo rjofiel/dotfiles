@@ -115,15 +115,16 @@ tmux-session-cleanup() {
 # Tmux Auto-start (new session per terminal)
 # =============================================================================
 tmux-start() {
-    # Cleanup old idle sessions (>10 min)
-    tmux-session-cleanup
+    # Get highest session number
+    max_num=0
+    for s in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
+        if [ "$s" -gt "$max_num" ] 2>/dev/null; then
+            max_num=$s
+        fi
+    done
     
-    # Get highest session number and add 1
-    SESSION_NUM=$(tmux list-sessions -F '#{session_name}' 2>/dev/null | sort -rn | head -1)
-    SESSION_NUM=$((SESSION_NUM + 1))
-    
-    # If no sessions exist, start at 1
-    [ -z "$SESSION_NUM" ] && SESSION_NUM=1
+    # Next session number
+    SESSION_NUM=$((max_num + 1))
     
     # Create new numbered session (don't attach)
     tmux new-session -d -s "$SESSION_NUM"
