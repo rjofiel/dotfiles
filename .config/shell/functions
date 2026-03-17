@@ -130,8 +130,8 @@ tmux-start() {
             fi
         done
         
-        # All sessions are active - kill oldest to make room
-        oldest=$(tmux list-sessions -F '#{session_name}' -T '#{session_last}' | sort -k2 -n | head -1 | cut -d: -f1)
+        # All sessions are active - kill oldest
+        oldest=$(tmux list-sessions -F '#{session_name} #{session_last}' 2>/dev/null | sort -k2 -n | head -1 | cut -d' ' -f1)
         tmux kill-session -t "$oldest" 2>/dev/null
     fi
     
