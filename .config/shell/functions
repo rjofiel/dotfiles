@@ -118,11 +118,12 @@ tmux-start() {
     # Cleanup old idle sessions (>10 min)
     tmux-session-cleanup
     
-    # Get next session number
-    SESSION_NUM=1
-    while tmux has-session -t "$SESSION_NUM" 2>/dev/null; do
-        SESSION_NUM=$((SESSION_NUM + 1))
-    done
+    # Get highest session number and add 1
+    SESSION_NUM=$(tmux list-sessions -F '#{session_name}' 2>/dev/null | sort -rn | head -1)
+    SESSION_NUM=$((SESSION_NUM + 1))
+    
+    # If no sessions exist, start at 1
+    [ -z "$SESSION_NUM" ] && SESSION_NUM=1
     
     # Create new numbered session (don't attach)
     tmux new-session -d -s "$SESSION_NUM"
