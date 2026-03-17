@@ -119,46 +119,17 @@ tmux-start() {
     # Cleanup old idle sessions (>10 min)
     tmux-session-cleanup
     
-    # If we have 5+ sessions, try to attach to an idle one first
-    session_count=$(tmux list-sessions 2>/dev/null | wc -l)
-    
-    if [ "$session_count" -ge 5 ]; then
-        # Find an idle session - use session_created and compare with now
-        now=$(date +%s)
-        for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
-            created=$(tmux display-message -p -t "$session" -F '#{session_created_time}' 2>/dev/null)
-            # Try to get last activity, fallback to created time
-            last_activity=$(tmux display-message -p -t "$session" -F '#{session_activity}' 2>/dev/null || echo "$created")
-            
-            # Convert to epoch if needed and check idle time
-            session_epoch=$(date -d "$created" +%s 2>/dev/null || echo 0)
-            idle_seconds=$((now - session_epoch))
-            
-            # If idle > 60s, attach to it instead of creating new
-            if [ "$idle_seconds" -gt 60 ]; then
-                if [ -t 0 ]; then
-                    tmux attach-session -t "$session"
-                fi
-                return
-            fi
-        done
-        
-        # All sessions are active - kill oldest to make room
-        oldest=$(tmux list-sessions -F '#{session_name} #{session_created_time}' 2>/dev/null | sort -k2 -n | head -1 | cut -d' ' -f1)
-        tmux kill-session -t "$oldest" 2>/dev/null
-    fi
-    
     # Get next session number
     SESSION_NUM=1
     while tmux has-session -t "$SESSION_NUM" 2>/dev/null; do
         SESSION_NUM=$((SESSION_NUM + 1))
     done
     
-    # Create new numbered session
+    # Create new numbered session (never attach, each terminal gets its own)
     tmux new-session -d -s "$SESSION_NUM"
     
-    # Attach only if we have a real terminal
-    if [ -t 0 ]; then
+    # Only attach if we have a real terminal AND this is the first session
+    if [ -t 0 ] && [ "$SESSION_NUM" -eq 1 ]; then
         tmux attach-session -t "$SESSION_NUM"
     fi
 }
