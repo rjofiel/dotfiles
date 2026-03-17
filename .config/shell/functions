@@ -97,9 +97,13 @@ tmux-start() {
         SESSION_NUM=$((SESSION_NUM + 1))
     done
     
-    # Create and attach new numbered session
+    # Create new numbered session
     tmux new-session -d -s "$SESSION_NUM"
-    tmux attach-session -t "$SESSION_NUM"
+    
+    # Attach only if we have a real terminal
+    if [ -t 0 ]; then
+        tmux attach-session -t "$SESSION_NUM"
+    fi
 }
 
 tmux-session-cleanup() {
