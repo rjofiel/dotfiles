@@ -97,11 +97,16 @@ ssh-agent-start() {
 # Tmux Session Cleanup (kill idle sessions)
 # =============================================================================
 tmux-session-cleanup() {
+    now=$(date +%s)
+    
     # Kill sessions idle for > 10 minutes
     for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
-        idle=$(tmux display-message -p -t "$session" -F '#{session_last}' 2>/dev/null)
+        created=$(tmux display-message -p -t "$session" -F '#{session_created_time}' 2>/dev/null)
+        session_epoch=$(date -d "$created" +%s 2>/dev/null || echo 0)
+        idle_seconds=$((now - session_epoch))
+        
         # If idle > 10 min (600s), kill it
-        if [ "$idle" -gt 600 ]; then
+        if [ "$idle_seconds" -gt 600 ]; then
             tmux kill-session -t "$session" 2>/dev/null
         fi
     done
@@ -118,11 +123,19 @@ tmux-start() {
     session_count=$(tmux list-sessions 2>/dev/null | wc -l)
     
     if [ "$session_count" -ge 5 ]; then
-        # Find an idle session (last activity > 60s ago)
+        # Find an idle session - use session_created and compare with now
+        now=$(date +%s)
         for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
-            idle=$(tmux display-message -p -t "$session" -F '#{session_last}' 2>/dev/null)
+            created=$(tmux display-message -p -t "$session" -F '#{session_created_time}' 2>/dev/null)
+            # Try to get last activity, fallback to created time
+            last_activity=$(tmux display-message -p -t "$session" -F '#{session_activity}' 2>/dev/null || echo "$created")
+            
+            # Convert to epoch if needed and check idle time
+            session_epoch=$(date -d "$created" +%s 2>/dev/null || echo 0)
+            idle_seconds=$((now - session_epoch))
+            
             # If idle > 60s, attach to it instead of creating new
-            if [ "$idle" -gt 60 ]; then
+            if [ "$idle_seconds" -gt 60 ]; then
                 if [ -t 0 ]; then
                     tmux attach-session -t "$session"
                 fi
@@ -130,8 +143,8 @@ tmux-start() {
             fi
         done
         
-        # All sessions are active - kill oldest
-        oldest=$(tmux list-sessions -F '#{session_name} #{session_last}' 2>/dev/null | sort -k2 -n | head -1 | cut -d' ' -f1)
+        # All sessions are active - kill oldest to make room
+        oldest=$(tmux list-sessions -F '#{session_name} #{session_created_time}' 2>/dev/null | sort -k2 -n | head -1 | cut -d' ' -f1)
         tmux kill-session -t "$oldest" 2>/dev/null
     fi
     
