@@ -97,11 +97,26 @@ ssh-agent-start() {
 # Tmux Session Cleanup (kill idle sessions)
 # =============================================================================
 tmux-session-cleanup() {
+    # Kill all sessions except the newest one if more than 5 exist
+    session_count=$(tmux list-sessions 2>/dev/null | wc -l)
+    
+    if [ "$session_count" -gt 5 ]; then
+        # Keep the newest session, kill the rest
+        newest=$(tmux list-sessions -F '#{session_last}' | sort -rn | head -1)
+        for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
+            last=$(tmux display-message -p -t "$session" -F '#{session_last}' 2>/dev/null)
+            if [ "$last" -ne "$newest" ]; then
+                tmux kill-session -t "$session" 2>/dev/null
+            fi
+        done
+        return
+    fi
+    
+    # Default: kill sessions idle for > 10 minutes
     for session in $(tmux list-sessions -F '#{session_name}' 2>/dev/null); do
         idle=$(tmux display-message -p -t "$session" -F '#{session_last}' 2>/dev/null)
-        windows=$(tmux list-windows -t "$session" 2>/dev/null | wc -l)
-        # If idle > 30 min (1800s) and no windows
-        if [ "$idle" -gt 1800 ] && [ "$windows" -eq 0 ]; then
+        # If idle > 10 min (600s), kill it
+        if [ "$idle" -gt 600 ]; then
             tmux kill-session -t "$session" 2>/dev/null
         fi
     done
